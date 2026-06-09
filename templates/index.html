@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>我的宠物 - 课堂宠物养成</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="desktop-container">
+        <header class="desktop-header">
+            <h1>🐾 宠物小伙伴</h1>
+            <button id="addPetBtn" class="btn-primary">+ 领养新宠物</button>
+        </header>
+
+        <div class="search-section">
+            <input type="text" id="searchInput" placeholder="搜索学生姓名或宠物昵称..." maxlength="30">
+            <button id="searchBtn" class="btn-secondary">🔍 搜索</button>
+        </div>
+
+        <div class="pet-grid-container">
+            <div id="petGrid" class="pet-grid-scroll">
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-emoji">🐾</div>
+                    <p>还没有宠物，点击右上角按钮领养吧！</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="pet-count-bar">
+            <span id="petCount">共 0 只宠物</span>
+        </div>
+    </div>
+
+    <div id="petSelectModal" class="modal hidden">
+        <div class="modal-content desktop-modal">
+            <h2>领养新宠物</h2>
+            
+            <div class="form-row">
+                <label>学生姓名</label>
+                <input type="text" id="studentNameInput" placeholder="输入学生姓名" maxlength="20">
+            </div>
+            
+            <div class="form-row">
+                <label>选择宠物类型</label>
+                <div id="petTypesGrid" class="pet-types-grid desktop-grid"></div>
+            </div>
+            
+            <div class="form-row">
+                <label>宠物昵称</label>
+                <input type="text" id="petNickname" placeholder="给宠物起个名字" maxlength="20">
+            </div>
+            
+            <div class="modal-actions">
+                <button id="cancelAdoptBtn" class="btn-secondary">取消</button>
+                <button id="confirmAdoptBtn" class="btn-primary">确定领养</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification hidden"></div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

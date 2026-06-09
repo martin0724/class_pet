@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>宠物详情 - 课堂宠物养成</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="desktop-container detail-container">
+        <header class="desktop-header">
+            <h1>🐾 宠物详情</h1>
+            <button id="backBtn" class="btn-secondary">← 返回列表</button>
+        </header>
+
+        <div class="detail-layout">
+            <div class="detail-left">
+                <div class="pet-card-large">
+                    <div id="petEmoji" class="pet-emoji-large">🐾</div>
+                    <div id="petName" class="pet-name-large"></div>
+                    <div id="petType" class="pet-type-large"></div>
+                    <div id="petLevel" class="pet-level-large"></div>
+                    <div id="petTitles" class="pet-titles-container"></div>
+                    <button id="editNicknameBtn" class="edit-btn">✏️ 修改昵称</button>
+                </div>
+
+                <div class="interaction-panel">
+                    <div class="points-bar">
+                        <span class="points-label">🎯 互动机会</span>
+                        <span id="pointsValue" class="points-value">0</span>
+                    </div>
+                    <div class="interaction-grid">
+                        <button class="btn-interaction" data-action="feed">🍖 喂养<div class="cost">消耗 1</div></button>
+                        <button class="btn-interaction" data-action="play">⚽ 游戏<div class="cost">消耗 1</div></button>
+                        <button class="btn-interaction" data-action="pet">✋ 抚摸<div class="cost">消耗 1</div></button>
+                        <button class="btn-interaction" data-action="clean">🧹 清理<div class="cost">消耗 1</div></button>
+                        <button class="btn-interaction" data-action="walk">🚶 散步<div class="cost">消耗 2</div></button>
+                        <button class="btn-interaction" data-action="party">🎂 派对<div class="cost">消耗 3</div></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-right">
+                <div class="status-panel-desktop">
+                    <h2>状态面板</h2>
+                    <div class="status-item-desktop">
+                        <div class="status-head">
+                            <span class="status-icon">❤️ 健康</span>
+                            <span id="healthValue" class="status-value-num">0</span>
+                        </div>
+                        <div class="status-bar-desktop">
+                            <div id="healthBar" class="status-fill health"></div>
+                        </div>
+                    </div>
+                    <div class="status-item-desktop">
+                        <div class="status-head">
+                            <span class="status-icon">🍖 饱食</span>
+                            <span id="hungerValue" class="status-value-num">0</span>
+                        </div>
+                        <div class="status-bar-desktop">
+                            <div id="hungerBar" class="status-fill hunger"></div>
+                        </div>
+                    </div>
+                    <div class="status-item-desktop">
+                        <div class="status-head">
+                            <span class="status-icon">😊 心情</span>
+                            <span id="moodValue" class="status-value-num">0</span>
+                        </div>
+                        <div class="status-bar-desktop">
+                            <div id="moodBar" class="status-fill mood"></div>
+                        </div>
+                    </div>
+                    <div class="status-item-desktop">
+                        <div class="status-head">
+                            <span class="status-icon">💕 亲密</span>
+                            <span id="intimacyValue" class="status-value-num">0</span>
+                        </div>
+                        <div class="status-bar-desktop">
+                            <div id="intimacyBar" class="status-fill intimacy"></div>
+                        </div>
+                    </div>
+                    <div class="status-item-desktop">
+                        <div class="status-head">
+                            <span class="status-icon">⭐ 经验</span>
+                            <span id="experienceValue" class="status-value-num">0</span>
+                        </div>
+                        <div class="status-bar-desktop">
+                            <div id="experienceBar" class="status-fill experience"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-section-desktop">
+                    <h2>🏆 宠物比赛</h2>
+                    <div id="gameList" class="game-list-desktop"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="petEditModal" class="modal hidden">
+        <div class="modal-content desktop-modal">
+            <h2>编辑宠物</h2>
+            <div class="edit-row">
+                <label>宠物昵称</label>
+                <input type="text" id="editNickname" placeholder="输入新昵称" maxlength="20">
+            </div>
+            <div class="modal-actions">
+                <button id="closeEditBtn" class="btn-secondary">取消</button>
+                <button id="saveNicknameBtn" class="btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification hidden"></div>
+
+    <script src="{{ url_for('static', filename='js/student.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小伙伴 - 老师控制面板</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container teacher-container">
+        <div class="teacher-header">
+            <h1>👩🏫 老师控制面板</h1>
+            <a href="/" class="btn-back">← 返回学生入口</a>
+        </div>
+        
+        <div class="teacher-nav">
+            <button id="navStudents" class="nav-btn active">学生管理</button>
+            <button id="navRewards" class="nav-btn">奖励发放</button>
+            <button id="navGames" class="nav-btn">比赛管理</button>
+            <button id="navResurrect" class="nav-btn">宠物复活</button>
+        </div>
+        
+        <div id="tabStudents" class="tab-content active">
+            <div class="tab-header">
+                <h2>学生列表</h2>
+                <div class="search-bar">
+                    <input type="text" id="searchStudent" placeholder="搜索学生...">
+                </div>
+            </div>
+            
+            <div id="studentList" class="student-list"></div>
+            
+            <div class="add-student">
+                <input type="text" id="newStudentName" placeholder="学生姓名">
+                <input type="text" id="newStudentClass" placeholder="班级" value="三年一班">
+                <button id="addStudentBtn" class="btn-primary">添加学生</button>
+                <button id="importStudentsBtn" class="btn-secondary">批量导入</button>
+            </div>
+        </div>
+        
+        <div id="tabRewards" class="tab-content hidden">
+            <div class="tab-header">
+                <h2>奖励发放</h2>
+                <div class="reward-settings">
+                    <label>奖励次数:</label>
+                    <select id="rewardAmount">
+                        <option value="1">1次</option>
+                        <option value="2">2次</option>
+                        <option value="3">3次</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div id="rewardStudentList" class="student-list"></div>
+            
+            <button id="rewardSelectedBtn" class="btn-primary">发放奖励给选中学生</button>
+        </div>
+        
+        <div id="tabGames" class="tab-content hidden">
+            <div class="tab-header">
+                <h2>比赛管理</h2>
+                <button id="createGameBtn" class="btn-primary">创建新比赛</button>
+            </div>
+            
+            <div id="gameList" class="game-list"></div>
+            
+            <div id="createGameModal" class="modal hidden">
+                <div class="modal-content">
+                    <h3>选择比赛类型</h3>
+                    <div id="gameTypesList"></div>
+                    <button id="confirmCreateGame" class="btn-primary">创建</button>
+                    <button id="cancelCreateGame" class="btn-secondary">取消</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="tabResurrect" class="tab-content hidden">
+            <div class="tab-header">
+                <h2>宠物复活</h2>
+            </div>
+            
+            <div id="deadPetsList" class="dead-pets-list"></div>
+        </div>
+        
+        <div id="notification" class="notification hidden"></div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/teacher.js') }}"></script>
+</body>
+</html>
