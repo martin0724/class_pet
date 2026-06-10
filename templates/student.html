@@ -21,12 +21,17 @@
                     <div id="petLevel" class="pet-level-large"></div>
                     <div id="petTitles" class="pet-titles-container"></div>
                     <button id="editNicknameBtn" class="edit-btn">✏️ 修改昵称</button>
+                    <button id="deletePetBtn" class="delete-btn">🗑️ 删除宠物</button>
                 </div>
 
                 <div class="interaction-panel">
                     <div class="points-bar">
                         <span class="points-label">🎯 互动机会</span>
                         <span id="pointsValue" class="points-value">0</span>
+                        <div class="points-actions">
+                            <button id="reducePointsBtn" class="btn-points-reduce">- 减少</button>
+                            <button id="addPointsBtn" class="btn-add-points">+ 增加</button>
+                        </div>
                     </div>
                     <div class="interaction-grid">
                         <button class="btn-interaction" data-action="feed">🍖 喂养<div class="cost">消耗 1</div></button>
@@ -107,6 +112,17 @@
             <div class="modal-actions">
                 <button id="closeEditBtn" class="btn-secondary">取消</button>
                 <button id="saveNicknameBtn" class="btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="deleteConfirmModal" class="modal hidden">
+        <div class="modal-content desktop-modal">
+            <h2>确认删除</h2>
+            <p id="deleteConfirmText">确定要删除这只宠物吗？</p>
+            <div class="modal-actions">
+                <button id="cancelDeleteBtn" class="btn-secondary">取消</button>
+                <button id="confirmDeleteBtn" class="btn-danger">确认删除</button>
             </div>
         </div>
     </div>

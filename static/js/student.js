@@ -23,6 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('editNicknameBtn').addEventListener('click', showEditModal);
     document.getElementById('closeEditBtn').addEventListener('click', hideEditModal);
     document.getElementById('saveNicknameBtn').addEventListener('click', saveNickname);
+    document.getElementById('deletePetBtn').addEventListener('click', showDeleteConfirm);
+    document.getElementById('cancelDeleteBtn').addEventListener('click', hideDeleteConfirm);
+    document.getElementById('confirmDeleteBtn').addEventListener('click', deletePet);
+    document.getElementById('addPointsBtn').addEventListener('click', addPoints);
+    document.getElementById('reducePointsBtn').addEventListener('click', reducePoints);
 
     document.querySelectorAll('.btn-interaction').forEach(btn => {
         btn.addEventListener('click', handleInteraction);
@@ -295,4 +300,94 @@ function showNotification(message) {
     setTimeout(() => {
         notification.classList.add('hidden');
     }, 2500);
+}
+
+function showDeleteConfirm() {
+    document.getElementById('deleteConfirmText').textContent =
+        `确定要删除"${currentPet.nickname}"吗？此操作不可恢复！`;
+    document.getElementById('deleteConfirmModal').classList.remove('hidden');
+}
+
+function hideDeleteConfirm() {
+    document.getElementById('deleteConfirmModal').classList.add('hidden');
+}
+
+async function deletePet() {
+    try {
+        const response = await fetch(`${API_BASE}/api/pets/${currentPet.id}`, {
+            method: 'DELETE'
+        });
+
+        if (response.ok) {
+            hideDeleteConfirm();
+            showNotification('宠物已删除');
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 1500);
+        } else {
+            const error = await response.json();
+            showNotification(error.error || '删除失败');
+        }
+    } catch (error) {
+        console.error('Failed to delete pet:', error);
+        showNotification('删除失败');
+    }
+}
+
+async function addPoints() {
+    try {
+        const response = await fetch(`${API_BASE}/api/points/add`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                student_id: studentId,
+                points: 1
+            })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            interactionPoints = data.points;
+            updatePointsDisplay();
+            updateInteractionButtons();
+            showNotification('互动机会 +1');
+        } else {
+            const error = await response.json();
+            showNotification(error.error || '增加失败');
+        }
+    } catch (error) {
+        console.error('Failed to add points:', error);
+        showNotification('增加失败');
+    }
+}
+
+async function reducePoints() {
+    if (interactionPoints <= 0) {
+        showNotification('互动机会已为0');
+        return;
+    }
+    try {
+        const response = await fetch(`${API_BASE}/api/points/add`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                student_id: studentId,
+                points: -1
+            })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            interactionPoints = data.points;
+            updatePointsDisplay();
+            updateInteractionButtons();
+            showNotification('互动机会 -1');
+        } else {
+            const error = await response.json();
+            showNotification(error.error || '减少失败');
+        }
+    } catch (error) {
+        console.error('Failed to reduce points:', error);
+        showNotification('减少失败');
+    }
 }

@@ -61,6 +61,24 @@ body {
     transform: translateY(-2px);
 }
 
+.btn-danger {
+    background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 71, 87, 0.6);
+}
+
 .desktop-header {
     display: flex;
     justify-content: space-between;
@@ -467,6 +485,45 @@ body {
     font-size: 18px;
 }
 
+.btn-add-points {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-add-points:hover {
+    background: rgba(255, 255, 255, 0.35);
+    border-color: white;
+}
+
+.btn-points-reduce {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-points-reduce:hover {
+    background: rgba(255, 255, 255, 0.35);
+    border-color: white;
+}
+
+.points-actions {
+    display: flex;
+    gap: 8px;
+}
+
 .interaction-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -677,4 +734,25 @@ body {
 .pet-card-large .edit-btn:hover {
     border-color: #667eea;
     background: #e8ebff;
+}
+
+.pet-card-large .delete-btn {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: white;
+    border: 2px solid #ffd0d5;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    color: #ff4757;
+}
+
+.pet-card-large .delete-btn:hover {
+    border-color: #ff4757;
+    background: #fff0f1;
 }
